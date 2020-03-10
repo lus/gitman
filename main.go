@@ -53,7 +53,7 @@ func main() {
 	for index, line := range strings.Split(string(file), "\n") {
 		// Split the string into key and value
 		split := strings.Split(line, "=")
-		if len(split) <= 2 {
+		if len(split) < 2 {
 			log.Println("ERROR: Failed to read line " + strconv.Itoa(index) + ": line must contain a separator!")
 			return
 		}
