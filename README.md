@@ -30,8 +30,8 @@ GitMan currently supports two usage modes:
 ### 3.) File syntax
 A simple preset file will look like this:
 ```
-user.name||Your Name
-user.email||email@example.com
-test.value||test value here
+user.name=Your Name
+user.email=email@example.com
+test.value=test value here
 ```
 I think this is self-explanatory.

@@ -52,15 +52,15 @@ func main() {
 	// Evaluate every line and set the corresponding git config variable
 	for index, line := range strings.Split(string(file), "\n") {
 		// Split the string into key and value
-		split := strings.Split(line, "||")
-		if len(split) != 2 {
-			log.Println("ERROR: Failed to read line " + strconv.Itoa(index) + ": line must not contain more than one separator!")
+		split := strings.Split(line, "=")
+		if len(split) <= 2 {
+			log.Println("ERROR: Failed to read line " + strconv.Itoa(index) + ": line must contain a separator!")
 			return
 		}
 
 		// Set the corresponding git config variable
 		key := strings.TrimSpace(split[0])
-		value := strings.TrimSpace(split[1])
+		value := strings.TrimSpace(strings.Join(split[1:], "="))
 		err := exec.Command("git", "config", key, value).Run()
 		if err != nil {
 			log.Println("ERROR: Failed to set config variable to line " + strconv.Itoa(index) + ": " + err.Error())
