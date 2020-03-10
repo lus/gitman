@@ -17,7 +17,8 @@ GitMan currently supports two usage modes:
    
    GitMan will automatically look for a preset file named 'PRESET_NAME.txt' inside the specified folder. 
    
-   Tip: If you execute GitMan like this: 'gitman' (without any parameters), then it will search for a file named 'default.txt' inside your preset directory.
+   Tip: If you execute GitMan like this: 'gitman' (without any parameters),
+   then it will search for a file named 'default.txt' inside your preset directory.
    ```
 2. Standalone mode:
    ```
