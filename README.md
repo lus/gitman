@@ -34,4 +34,4 @@ user.name||Your Name
 user.email||email@example.com
 test.value||test value here
 ```
-I think is self-explanatory.
+I think this is self-explanatory.
