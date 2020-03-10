@@ -15,6 +15,8 @@ func main() {
 	nameFlag := flag.String("name", "", "The name of the preset")
 	pathFlag := flag.String("path", "", "The path to the preset file")
 	flag.Parse()
+	name := *nameFlag
+	path := *pathFlag
 
 	// Read the preset directory
 	presets := os.Getenv("GITMAN_PRESETS")
@@ -25,21 +27,21 @@ func main() {
 	}
 
 	// Validate the input
-	if !envEnabled && *nameFlag != "" {
+	if !envEnabled && name != "" {
 		log.Println("INFO: Ignoring 'name' flag because it is not relevant unless the 'GITMAN_PRESETS' environment variable was set.")
 	}
-	if envEnabled && *pathFlag != "" {
-		log.Println("INFO: Ignoring 'path' flag because it is not relevant if the 'GITMAN_PRESETS' environment variable was set.")
+	if envEnabled && name == "" && path == "" {
+		name = "default"
 	}
-	if !envEnabled && *pathFlag == "" {
+	if !envEnabled && path == "" {
 		log.Println("ERROR: The 'path' flag is required if the 'GITMAN_PRESETS' environment variable was not set.")
 		return
 	}
 
 	// Try to read the file
-	filePath := presets + "\\" + *nameFlag + ".txt"
-	if !envEnabled {
-		filePath = *pathFlag
+	filePath := presets + "\\" + name + ".txt"
+	if path != "" {
+		filePath = path
 	}
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
